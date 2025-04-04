@@ -1,0 +1,14 @@
+{
+    "games": [
+        {
+            "name": "2048",
+            "description": "Classic puzzle game where you combine tiles to reach 2048",
+            "path": "/usr/local/bin/2048"
+        },
+        {
+            "name": "Ashlight",
+            "description": "An original atmospheric maze game with a dark fantasy setting",
+            "path": "/usr/local/bin/ashlight"
+        }
+    ]
+} 
