@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
@@ -32,6 +33,21 @@ func main() {
 		SetDynamicColors(true).
 		SetTextAlign(tview.AlignLeft).
 		SetTextColor(tcell.ColorYellow)
+
+	// Create instructions text view
+	instructions := tview.NewTextView().
+		SetDynamicColors(true).
+		SetTextAlign(tview.AlignLeft).
+		SetTextColor(tcell.ColorBlue)
+
+	// Set instructions text
+	instructions.SetText(strings.Join([]string{
+		"Controls:",
+		"↑/↓ - Navigate games",
+		"Enter/A Button - Select game",
+		"Space - Return to menu",
+		"q - Quit",
+	}, "\n"))
 
 	// Add games to the menu
 	for _, game := range cfg.Games {
@@ -66,10 +82,16 @@ func main() {
 	})
 
 	// Create the main layout
-	flex := tview.NewFlex().
+	mainFlex := tview.NewFlex().
 		SetDirection(tview.FlexColumn).
 		AddItem(menu, 0, 1, true).
 		AddItem(description, 0, 2, false)
+
+	// Create the full layout with instructions at the bottom
+	flex := tview.NewFlex().
+		SetDirection(tview.FlexRow).
+		AddItem(mainFlex, 0, 1, true).
+		AddItem(instructions, 5, 0, false)
 
 	// Set the root and run the application
 	if err := app.SetRoot(flex, true).Run(); err != nil {
