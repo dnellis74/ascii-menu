@@ -22,8 +22,8 @@
         },
         {
             "name": "Chess",
-            "description": "What did you expect?",
-            "path": "cd /home/ec2-user/terminity/ && cargo run Chess && sleep 3"
+            "description": "No surprises. It's chess.",
+            "path": "/usr/local/bin/chess"
         }        
     ]
 } 
