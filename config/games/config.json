@@ -23,8 +23,7 @@
         {
             "name": "Chess",
             "description": "What did you expect?",
-            "path": "cd terminity/ && cargo run Chess && sleep 3"
-        }
-        
+            "path": "cd /home/ec2-user/terminity/ && cargo run Chess && sleep 3"
+        }        
     ]
 } 
