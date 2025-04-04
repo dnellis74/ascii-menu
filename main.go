@@ -12,7 +12,7 @@ import (
 
 func main() {
 	// Load configuration
-	cfg, err := config.LoadConfig("games/config.json")
+	cfg, err := config.LoadConfig()
 	if err != nil {
 		log.Fatalf("Failed to load configuration: %v", err)
 	}

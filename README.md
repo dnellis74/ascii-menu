@@ -9,6 +9,7 @@ A colorful TUI (Text User Interface) menu system for launching ASCII-based games
 - Easy configuration via JSON
 - Support for launching external game executables
 - Keyboard navigation (arrow keys, Enter, Space)
+- Self-contained executable (no external dependencies needed)
 
 ## Installation
 
@@ -17,14 +18,23 @@ A colorful TUI (Text User Interface) menu system for launching ASCII-based games
    ```bash
    go mod download
    ```
-3. Build the application:
+3. Build the self-contained executable:
    ```bash
-   go build
+   # For macOS (Intel)
+   CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -ldflags="-w -s" -o ascii-menu
+   
+   # For macOS (Apple Silicon)
+   CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -ldflags="-w -s" -o ascii-menu
+   
+   # For Linux
+   CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o ascii-menu
    ```
+
+The resulting binary can be copied anywhere and run directly.
 
 ## Configuration
 
-Games are configured in `games/config.json`. Each game entry requires:
+Games are configured in `config/games/config.json`. Each game entry requires:
 - `name`: Display name
 - `description`: Short description
 - `path`: Absolute path to the game executable
@@ -60,4 +70,4 @@ Controls:
 The project is organized into:
 - `main.go`: Main application logic
 - `config/`: Configuration handling
-- `games/`: Game configuration files 
+- `config/games/`: Game configuration files 
