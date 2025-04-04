@@ -19,6 +19,11 @@
             "name": "Caca Demo",
             "description": "Whoah man, this is a demo",
             "path": "/usr/local/bin/cacademo"
+        },
+        {
+            "name": "Chess",
+            "description": "What did you expect?",
+            "path": "cd terminity/ && cargo run Chess"
         }
         
     ]
