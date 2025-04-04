@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-//go:embed config/games/config.json
+//go:embed games/config.json
 var configFS embed.FS
 
 // Game represents a single game entry in the configuration
@@ -22,7 +22,7 @@ type Config struct {
 
 // LoadConfig loads the game configuration from the embedded JSON file
 func LoadConfig() (*Config, error) {
-	file, err := configFS.ReadFile("config/games/config.json")
+	file, err := configFS.ReadFile("games/config.json")
 	if err != nil {
 		return nil, err
 	}
