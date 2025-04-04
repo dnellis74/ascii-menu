@@ -23,7 +23,7 @@
         {
             "name": "Chess",
             "description": "What did you expect?",
-            "path": "cd terminity/ && cargo run Chess"
+            "path": "cd terminity/ && cargo run Chess && sleep 3"
         }
         
     ]
