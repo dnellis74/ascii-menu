@@ -9,6 +9,17 @@
             "name": "Ashlight",
             "description": "An original atmospheric maze game with a dark fantasy setting",
             "path": "/usr/local/bin/ashlight"
+        },
+        {
+            "name": "Caca Fire",
+            "description": "Warm yourself to the fire of the Caca",
+            "path": "/usr/local/bin/cacafire"
+        },
+        {
+            "name": "Caca Demo",
+            "description": "Whoah man, this is a demo",
+            "path": "/usr/local/bin/cacademo"
         }
+        
     ]
 } 
