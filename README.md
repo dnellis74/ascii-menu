@@ -10,6 +10,7 @@ A colorful TUI (Text User Interface) menu system for launching ASCII-based games
 - Support for launching external game executables
 - Keyboard navigation (arrow keys, Enter, Space)
 - Self-contained executable (no external dependencies needed)
+- Support for both embedded and external configurations
 
 ## Installation
 
@@ -32,12 +33,50 @@ A colorful TUI (Text User Interface) menu system for launching ASCII-based games
 
 The resulting binary can be copied anywhere and run directly.
 
+## Interface
+
+The menu interface consists of two main panels:
+
+1. **Left Panel**: Game List
+   - Shows all available games
+   - Currently selected game is highlighted in green
+   - Games are navigated using arrow keys
+
+2. **Right Panel**: Game Description
+   - Shows detailed description of the currently selected game
+   - Updates automatically as you navigate through games
+   - Yellow text for better readability
+
+## Controls
+
+- **↑ (Up Arrow)**: Move selection up in the game list
+- **↓ (Down Arrow)**: Move selection down in the game list
+- **Enter**: Launch the selected game
+- **Space**: Return to menu (if in a game)
+- **q**: Quit the application
+
+## Game Launching
+
+When you select a game and press Enter:
+1. The menu will temporarily suspend
+2. The selected game will launch in the same terminal
+3. When the game exits, the menu will automatically return
+4. If the game fails to launch, an error message will be displayed
+
 ## Configuration
 
-Games are configured in `config/games/config.json`. Each game entry requires:
-- `name`: Display name
-- `description`: Short description
-- `path`: Absolute path to the game executable
+The menu system supports two types of configuration:
+
+1. **Embedded Configuration** (built into the binary)
+   - Located in `config/games/config.json`
+   - Contains default games
+   - Always available
+
+2. **External Configuration** (optional)
+   - Located at `/etc/ascii-menu/config.json`
+   - Can be used to add additional games
+   - Games from external config are added to the embedded games
+   - Format is the same as embedded config
 
 Example configuration:
 ```json
@@ -52,6 +91,12 @@ Example configuration:
 }
 ```
 
+To add your own games:
+1. Create the directory: `sudo mkdir -p /etc/ascii-menu`
+2. Create the config file: `sudo touch /etc/ascii-menu/config.json`
+3. Add your games following the example format
+4. Set appropriate permissions: `sudo chmod 644 /etc/ascii-menu/config.json`
+
 ## Usage
 
 Run the application:
@@ -59,15 +104,9 @@ Run the application:
 ./ascii-menu
 ```
 
-Controls:
-- ↑/↓: Navigate menu
-- Enter: Launch selected game
-- Space: Return to menu
-- q: Quit application
-
 ## Development
 
 The project is organized into:
 - `main.go`: Main application logic
 - `config/`: Configuration handling
-- `config/games/`: Game configuration files 
+- `config/games/`: Embedded game configuration files 
